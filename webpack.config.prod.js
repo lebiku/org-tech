@@ -6,7 +6,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     debug: true,
     entry: {
-        main: path.resolve(__dirname, "src/index.tsx"),
+        kapoOrg: path.resolve(__dirname, "src/index.tsx"),
         vendor: path.resolve(__dirname, "src/vendor.tsx")
     },
     output: {

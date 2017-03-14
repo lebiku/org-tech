@@ -1,45 +1,31 @@
 import * as React from "react";
-// import { css } from 'office-ui-fabric-react';
 import "office-ui-fabric-react/dist/css/fabric.min.css";
 
-import Kachel from "./Kachel";
-import OverlayDark from "./Overlay";
-
+import KapoCallout from "./Callout";
 import { Translations } from "../assets/icons";
 
-export interface HomeProps { compiler: string; framework: string; }
-
-export class Home extends React.Component<HomeProps, {}> {
+export class OrgHome extends React.Component<{}, {}> {
   render() {
-    return <div className="ms-Grid kapo-Grid">
-        <div className="ms-Grid-row">
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl2">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.Stoerungen")} termSetId="1eacff41-c02c-4d43-90ee-b5089476fe0a" />
-          </div>
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl2">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.Material")} termSetId="00F4E2E5-7F0C-4D2A-A0D9-54C0656D34C7" />
-          </div>
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl2">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.SchalterLogistik")} termSetId="97B065F6-B009-4EB1-B392-A06398DF0770" />
-          </div>
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl2">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.Garagenbetriebe")} termSetId="A9486BFC-FD87-4D04-B53D-2EBA29472109" />
-          </div>
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl2">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.Beschaffungen")} termSetId="1975B549-84B6-4D95-B5C3-AF23C6E3A960" />
-          </div>
-        </div>   
-        <div className="ms-Grid-row">
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl4">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.Wissen")} termSetId="b880b1bd-e8a5-48fa-af22-377ddeed8282" />
-          </div>
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl4">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.Leistungen")} termSetId="BE4713C8-23D3-423D-9EB7-10AA6CF90271" />
-          </div>
-          <div className="ms-Grid-col ms-u-sm12 ms-u-lg4 ms-u-xl4">
-            <OverlayDark imageUrl={Translations.getByKey("Icons.Media")} termSetId="4E0B8376-6C1E-4D2F-8A48-BB1A432BF612" />
-          </div>
-        </div>              
-      </div>;
+    return <div className="kapo-org">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1268" height="756" viewBox="0 0 1268 756">
+        <image id="Ebene_0" data-name="Ebene 0" x="66" y="20" width="1131" height="722" xlinkHref={Translations.getByKey("Images.Organisation")} />
+        {/*<KapoCallout name="Chef Technik" x={523} y={20} width={215} height={76} />
+        <KapoCallout name="Wissenschaftliche MA" x={331} y={111} width={215} height={45} />*/}
+        <KapoCallout name="Mutationskoordination" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={845} y={293} width={200} height={45} />
+        <KapoCallout name="Fachbereich Basisdienste" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={66} y={488} width={172} height={79} />
+        <KapoCallout name="Fachbereich Applikationen" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={258} y={488} width={172} height={79} />
+        <KapoCallout name="Fachbereich Motorfahrzeugbetr." title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={450} y={488} width={172} height={79} />
+        <KapoCallout name="Fachbereich Telekommunikation" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={642} y={488} width={172} height={79} />
+        <KapoCallout name="Fachbereich Gebäudetechnik" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={834} y={488} width={172} height={79} />
+        <KapoCallout name="Fachbereich Logistik" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={1026} y={488} width={172} height={79} />
+        <KapoCallout name="Applikationen" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={258} y={583} width={170} height={45} />
+        <KapoCallout name="REZ" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={258} y={641} width={170} height={45} />
+        <KapoCallout name="Multimediadienste" title="Titel" termId="f29497c1-eafc-4909-9942-8540fd87cd54" x={258} y={698} width={170} height={45} />
+
+        {/*<a href="https://de.wikipedia.org/wiki/George_Washington">
+          <rect x="258" y="640" fill="#fff" opacity="0.5" className="kapo-image-map" strokeWidth="3" stroke="rgb(255,0,0)" width="170" height="45" />
+        </a>    */}
+      </svg>
+    </div>;
   }
 }

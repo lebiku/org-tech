@@ -1,55 +1,37 @@
+.kapo-image-map:hover {
+  opacity: 0.5;
+}
+
+.kapo-org a {
+  cursor: pointer;
+}
+
 .kapo-Overlay img {
   width: 100%;
   height: auto;
 }
 
-.kapo-Grid .ms-Overlay {
-  left: 8px;
-  right: 8px;
-  bottom: 4px;
+.org-callout {
+  padding: 0px 10px;
 }
 
-.kapo-Overlay {
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+.ms-Callout-beak,
+.ms-Callout-beakCurtain,
+.ms-Callout-main {
+  background-color: #eee !important;
 }
 
-.kapo-Overlay-Content {
-  cursor: default;
+.org-callout .org-callout-title {
+  font-weight: bold;
 }
 
-.kapo-Overlay-Content.ms-List {
-  background-color: rgba(0,0,0,.4);
-  padding: 5px 10px;
+.org-callout .org-callout-content ul {
+  padding-left: 1.2em;
+  list-style-type: none;
 }
 
-.kapo-Overlay-Content a {
-  color: #fff;
-  text-decoration: none;
+.org-callout .org-callout-content ul > li:before {
+  content: "–"; /* en dash */
+  position: absolute;
+  margin-left: -1.1em; 
 }
-
-.kapo-Overlay-Content a:hover {
-  color: yellow;
-}
-
-.kapo-extra {
-  margin-top: 10px;
-  color: #ccc;
-}
-
-/* Adjust Grid Layout for Kapo */
-@media screen and (min-width : 1024px)  {
-  .kapo-Grid .ms-u-xl2 {
-    width: 20%;
-  }
-}
-
-@media screen and (min-width : 640px)  {
-  .kapo-Grid .ms-Grid-row {
-    margin-bottom: 20px;
-  }
-}
-

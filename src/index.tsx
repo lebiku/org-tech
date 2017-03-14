@@ -3,9 +3,9 @@ import "./index.css";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Home } from "./components/Home";
+import { OrgHome } from "./components/Home";
 
 ReactDOM.render(
-    <Home compiler="TypeScript" framework="React" />,
+    <OrgHome />,
     document.getElementById("app-entry-point")
 );

@@ -1,49 +1,41 @@
-import { ITaxonomyItem } from "./SPLists";
-import { ITaxonomyItemsLists } from "./SPLists";
+import { ITaxonomyItem } from "./SPItems";
 import * as pnp from "sp-pnp-js";
 
 import "whatwg-fetch";
 // what a comment
 export default class TaxonomyClient {
 
-  public static get(termSetId: string, options?: any): Promise<ITaxonomyItemsLists[]> {
+  public static get(termId: string, options?: any): Promise<ITaxonomyItem> {
 
-    return new Promise<ITaxonomyItemsLists[]>((resolve: any) => {
-      resolve(this._getTermSet(termSetId));
+    return new Promise<ITaxonomyItem>((resolve: any) => {
+      resolve(this._getTerm(termId));
     });
   }
 
-  private static _getTermSet(termSetId: string): Promise<ITaxonomyItemsLists[]> {
+  private static _getTerm(termId: string): Promise<ITaxonomyItem> {
 
-    return new Promise<ITaxonomyItemsLists[]>((resolve: any, reject: any) => {
+    return new Promise<ITaxonomyItem>((resolve: any, reject: any) => {
 
       this._loadTermstore(function () {
         let context = SP.ClientContext.get_current();
         let taxonomySession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
         let termStore = taxonomySession.getDefaultSiteCollectionTermStore();
-        let term = termStore.getTerm(new SP.Guid(termSetId));
+        let term = termStore.getTerm(new SP.Guid(termId));
 
-        let subterms = term.get_terms();
-
-        context.load(subterms);
+        context.load(term);
 
         context.executeQueryAsync(function () {
-          let items: ITaxonomyItem[] = [];
+          let item: ITaxonomyItem = {
+            Id: term.get_id().toString(),
+            Title: _spPageContextInfo.currentLanguage !== 1036 ? term.get_localCustomProperties()["TitelDe"] : term.get_localCustomProperties()["TitelFr"],
+            Content: _spPageContextInfo.currentLanguage !== 1036 ? term.get_localCustomProperties()["InhaltDe"] : term.get_localCustomProperties()["InhaltFr"]
+          };
 
-          let termsEnumerator = subterms.getEnumerator();
+          // item.Id = term.get_id().toString();
+          // item.Title = _spPageContextInfo.currentLanguage !== 1036 ? term.get_localCustomProperties()["TitelDe"] : term.get_localCustomProperties()["TitelFr"];
+          // item.Content = _spPageContextInfo.currentLanguage !== 1036 ? term.get_localCustomProperties()["InhaltDe"] : term.get_localCustomProperties()["InhaltFr"];
 
-          while (termsEnumerator.moveNext()) {
-            let currentTerm = termsEnumerator.get_current();
-            let name = currentTerm.get_name();
-            let id = currentTerm.get_id();
-            let url = currentTerm.get_localCustomProperties()["URL"];
-            let extra = _spPageContextInfo.currentLanguage === 1036 ? currentTerm.get_localCustomProperties()["ExtraFr"] : currentTerm.get_localCustomProperties()["ExtraDe"];
-            let target = currentTerm.get_localCustomProperties()["Target"];
-
-            items.push({ Title: name, Id: id.toString(), Url: url, Extra: extra, Target: target });
-          }
-
-          resolve(items);
+          resolve(item);
 
         }, reject);
       });
