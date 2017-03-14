@@ -11,10 +11,10 @@ function Upload-JavaScript {
     Add-PnPFile -Path $scriptBuildPath -Folder $remoteAssetsPath -Checkout -Publish
 }
 
-Upload-JavaScript "main.js"
-Upload-JavaScript "main.js.map"
-Upload-JavaScript "main.css"
-Upload-JavaScript "main.css.map"
+Upload-JavaScript "kapoOrg.js"
+Upload-JavaScript "kapoOrg.js.map"
+Upload-JavaScript "kapoOrg.css"
+Upload-JavaScript "kapoOrg.css.map"
 Upload-JavaScript "vendor.js"
 Upload-JavaScript "vendor.js.map"
 Upload-JavaScript "vendor.css"

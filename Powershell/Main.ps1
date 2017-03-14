@@ -22,19 +22,24 @@ Apply-PnPProvisioningTemplate -Path "Taxonomy.xml"
 # Provision Javascript and CSS files
 .\Artifacts.ps1
 
-$relativeHomePageUrl = '/de-DE/Seiten/default.aspx';
+$relativeHomePageUrl = '/de-DE/Seiten/Organisation.aspx';
 $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
 
 Connect-PnPOnline -url ($destinationUrl + "/de-DE") -credentials $Credential
+
+Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage'
+
 Set-PnPFileCheckedOut -Url $relativePortalUrl
 
 Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
 Set-PnPFileCheckedIn -Url $relativePortalUrl
 
-$relativeHomePageUrl = '/fr-FR/Pages/default.aspx';
+$relativeHomePageUrl = '/fr-FR/Pages/Organisation.aspx';
 $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
 
 Connect-PnPOnline -url ($destinationUrl + "/fr-FR") -credentials $Credential
+
+Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage'
 Set-PnPFileCheckedOut -Url $relativePortalUrl
 
 Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
