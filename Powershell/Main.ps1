@@ -1,16 +1,6 @@
 ﻿### Setup and Connect
 . .\Variables.ps1
 
-## Windows 10 Rechner
-#Install-Module SharePointPnPPowerShellOnline -AllowClobber
-#Install-Module SharePointPnPPowerShell2016 -AllowClobber
-#Install-Module SharePointPnPPowerShell2013 -AllowClobber -Force
-
-# Alternativ auch nicht Windows10 Rechnern
-https://download.microsoft.com/download/4/1/A/41A369FA-AA36-4EE9-845B-20BCC1691FC5/PackageManagement_x64.msi
-Install-PowerShellPackageManagement
-Install-Module 'SharePointPnPPowerShell2013' -Force -SkipPublisherCheck 
-
 # Auto Credentials
 $Credential = Get-Credential;
 
@@ -22,25 +12,25 @@ Apply-PnPProvisioningTemplate -Path "Taxonomy.xml"
 # Provision Javascript and CSS files
 .\Artifacts.ps1
 
-$relativeHomePageUrl = '/de-DE/Seiten/Organisation.aspx';
-$relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
+if ($provisionGermanPage) {
+    $relativeHomePageUrl = '/de-DE/Seiten/Organisation.aspx';
+    $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
 
-Connect-PnPOnline -url ($destinationUrl + "/de-DE") -credentials $Credential
+    Connect-PnPOnline -url ($destinationUrl + "/de-DE") -credentials $Credential
+    Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage' -ErrorAction SilentlyContinue
+    Set-PnPFileCheckedOut -Url $relativePortalUrl
+    Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
+    Set-PnPFileCheckedIn -Url $relativePortalUrl
+}
 
-Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage'
+if ($provisionFrenchPage) {
 
-Set-PnPFileCheckedOut -Url $relativePortalUrl
+    $relativeHomePageUrl = '/fr-FR/Pages/Organisation.aspx';
+    $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
 
-Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
-Set-PnPFileCheckedIn -Url $relativePortalUrl
-
-$relativeHomePageUrl = '/fr-FR/Pages/Organisation.aspx';
-$relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
-
-Connect-PnPOnline -url ($destinationUrl + "/fr-FR") -credentials $Credential
-
-Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage'
-Set-PnPFileCheckedOut -Url $relativePortalUrl
-
-Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
-Set-PnPFileCheckedIn -Url $relativePortalUrl
+    Connect-PnPOnline -url ($destinationUrl + "/fr-FR") -credentials $Credential
+    Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage' -ErrorAction SilentlyContinue
+    Set-PnPFileCheckedOut -Url $relativePortalUrl
+    Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
+    Set-PnPFileCheckedIn -Url $relativePortalUrl
+}

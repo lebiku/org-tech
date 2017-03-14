@@ -6,7 +6,7 @@ function Upload-JavaScript {
 		[string] $fileName
 	)
 
-    $remoteAssetsPath = "Style Library\kapo-tech-startpage"
+    $remoteAssetsPath = "Style Library\kapo-tech-org"
     $scriptBuildPath = "..\dist\" + $fileName;
     Add-PnPFile -Path $scriptBuildPath -Folder $remoteAssetsPath -Checkout -Publish
 }
