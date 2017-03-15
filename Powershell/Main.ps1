@@ -12,7 +12,7 @@ Apply-PnPProvisioningTemplate -Path "Taxonomy.xml"
 # Provision Javascript and CSS files
 .\Artifacts.ps1
 
-if ($provisionGermanPage) {
+if ($provisionGermanPage -eq $true) {
     $relativeHomePageUrl = '/de-DE/Seiten/Organisation.aspx';
     $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
 
@@ -23,7 +23,7 @@ if ($provisionGermanPage) {
     Set-PnPFileCheckedIn -Url $relativePortalUrl
 }
 
-if ($provisionFrenchPage) {
+if ($provisionFrenchPage -eq $true) {
 
     $relativeHomePageUrl = '/fr-FR/Pages/Organisation.aspx';
     $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
