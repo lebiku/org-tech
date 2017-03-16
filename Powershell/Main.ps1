@@ -23,14 +23,14 @@ if ($provisionGermanPage -eq $true) {
     Set-PnPFileCheckedIn -Url $relativePortalUrl
 }
 
-if ($provisionFrenchPage -eq $true) {
+# if ($provisionFrenchPage -eq $true) {
 
-    $relativeHomePageUrl = '/fr-FR/Pages/Organisation.aspx';
-    $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
+#     $relativeHomePageUrl = '/fr-FR/Pages/Organisation.aspx';
+#     $relativePortalUrl = $siteRelativeUrl + $relativeHomePageUrl 
 
-    Connect-PnPOnline -url ($destinationUrl + "/fr-FR") -credentials $Credential
-    Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage' -ErrorAction SilentlyContinue
-    Set-PnPFileCheckedOut -Url $relativePortalUrl
-    Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
-    Set-PnPFileCheckedIn -Url $relativePortalUrl
-}
+#     Connect-PnPOnline -url ($destinationUrl + "/fr-FR") -credentials $Credential
+#     Add-PnPPublishingPage -PageName 'Organisation' -Title 'Organisation' -PageTemplateName 'KapoBlankWebPartPage' -ErrorAction SilentlyContinue
+#     Set-PnPFileCheckedOut -Url $relativePortalUrl
+#     Add-PnPWebPartToWebPartPage -ServerRelativePageUrl $relativePortalUrl -Path '.\AppLoaderDist.webpart' -ZoneId "Header" -ZoneIndex 1
+#     Set-PnPFileCheckedIn -Url $relativePortalUrl
+# }
